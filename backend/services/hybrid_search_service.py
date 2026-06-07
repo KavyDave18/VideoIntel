@@ -14,6 +14,9 @@ class HybridSearchService:
         scores
     ):
 
+        if not scores:
+            return []
+
         max_score = max(scores)
 
         if max_score == 0:
@@ -26,26 +29,31 @@ class HybridSearchService:
 
         return [
             score / max_score
-            for score in scores
+            for score
+            in scores
         ]
 
     def search(
         self,
         query,
-        limit=5
+        limit=5,
+        category=None,
+        candidate_limit=50
     ):
 
         vector_results = (
             search_service.search(
                 query=query,
-                limit=10
+                limit=candidate_limit,
+                category=category
             )
         )
 
         bm25_results = (
             bm25_service.search(
                 query=query,
-                limit=10
+                limit=candidate_limit,
+                category=category
             )
         )
 
@@ -124,7 +132,10 @@ class HybridSearchService:
                             chunk.video_id,
 
                         "video_title":
-                            None,
+                            chunk.video.title,
+
+                        "category":
+                            chunk.video.category,
 
                         "start_time":
                             chunk.start_time,

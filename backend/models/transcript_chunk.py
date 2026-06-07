@@ -9,6 +9,8 @@ from sqlalchemy import (
 
 from sqlalchemy.sql import func
 
+from sqlalchemy.orm import relationship
+
 from backend.database.base import Base
 
 
@@ -26,6 +28,11 @@ class TranscriptChunk(Base):
         Integer,
         ForeignKey("videos.id"),
         nullable=False
+    )
+
+    video = relationship(
+        "Video",
+        back_populates="chunks"
     )
 
     chunk_index = Column(

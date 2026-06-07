@@ -16,7 +16,8 @@ class SearchService:
     def search(
         self,
         query,
-        limit=5
+        limit=5,
+        category=None
     ):
 
         db = SessionLocal()
@@ -28,7 +29,8 @@ class SearchService:
 
         results = qdrant_service.search(
             query_embedding=query_embedding,
-            limit=limit
+            limit=limit,
+            category=category
         )
 
         formatted_results = []
@@ -54,6 +56,9 @@ class SearchService:
 
                     "video_id":
                         video.id,
+
+                    "category":
+                        result.payload["category"],
 
                     "start_time":
                         result.payload["start_time"],

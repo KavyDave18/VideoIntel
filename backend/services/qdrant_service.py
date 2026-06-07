@@ -2,7 +2,10 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import (
     Distance,
     VectorParams,
-    PointStruct
+    PointStruct,
+    Filter,
+    FieldCondition,
+    MatchValue
 )
 
 
@@ -65,27 +68,39 @@ class QdrantService:
         )
 
     def search(
-        self,
-        query_embedding,
-        limit=5
+    self,
+    query_embedding,
+    limit=5,
+    category=None
     ):
+
+        query_filter = None
+
+        if category is not None:
+
+            query_filter = Filter(
+                must=[
+                    FieldCondition(
+                        key="category",
+                        match=MatchValue(
+                            value=category
+                        )
+                    )
+                ]
+            )
 
         response = self.client.query_points(
             collection_name=self.COLLECTION_NAME,
             query=query_embedding,
+            query_filter=query_filter,
             limit=limit,
             with_payload=True
         )
 
         return response.points
 
-    def get_vector_count(self):
-
-        result = self.client.count(
-            collection_name=self.COLLECTION_NAME
-        )
-
-        return result.count
-
+        def get_vector_count(self):
+            result = self.client.count( collection_name=self.COLLECTION_NAME ) 
+            return result.count
 
 qdrant_service = QdrantService()
