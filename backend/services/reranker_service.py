@@ -1,6 +1,6 @@
 from sentence_transformers import CrossEncoder
 
-class RankerServices:
+class RerankerService:
 
     def __init__(self):
         self.model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
@@ -9,13 +9,13 @@ class RankerServices:
 
         pairs = [(query,chunk) for chunk in chunks]
 
-        score = self.model.predict(pairs)
+        scores = self.model.predict(pairs)
 
-        result = list(zip(chunks,score))
+        result = list(zip(chunks,scores))
 
         result.sort(key = lambda x:x[1],
                     reverse=True)
 
         return result
 
-reranker_service = (RankerServices())
+reranker_service = (RerankerService())
