@@ -50,6 +50,9 @@ class RerankedSearchService:
 
             reranked_results.append(
                 {
+                    "hybrid_score":
+                        candidate["score"],
+                    
                     "rerank_score":
                         float(score),
 

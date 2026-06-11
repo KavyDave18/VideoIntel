@@ -13,6 +13,11 @@ for result in results:
     )
 
     print(
+    "Hybrid Score:",
+    result["hybrid_score"]
+    )
+
+    print(
         "Video:",
         result["result"]["video_id"]
     )
