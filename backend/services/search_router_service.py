@@ -1,6 +1,6 @@
 from backend.services.reranked_search_service import reranked_search_service
 from backend.services.confidence_service import confidence_service
-from backend.services.web_search_service import web_seach_service
+from backend.services.web_search_service import web_search_service
 
 class SearchRouterService:
 
@@ -18,7 +18,7 @@ class SearchRouterService:
                 "results": video_result
             }
 
-        web_results=(web_seach_service.search(query=query))
+        web_results=(web_search_service.search(query=query))
 
         return {
             "query": query,

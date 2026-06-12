@@ -16,4 +16,4 @@ class WebSearchService:
 
         return response["results"]
 
-web_seach_service = (WebSearchService())
+web_search_service = (WebSearchService())
