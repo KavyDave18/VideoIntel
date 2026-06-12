@@ -1,8 +1,8 @@
-from backend.services.confidence_service import confidence_services
+from backend.services.confidence_service import confidence_service
 
 from backend.services.reranked_search_service import reranked_search_service
 
-query = "latest iphone launch"
+query = "openai gpt 5"
 
 results = (
     reranked_search_service.search(
@@ -11,7 +11,7 @@ results = (
 )
 
 print(
-    confidence_services.is_confident(
+    confidence_service.is_confident(
         results
     )
 )
