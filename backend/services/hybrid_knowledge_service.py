@@ -2,7 +2,7 @@ from backend.services.reranked_search_service import (
     reranked_search_service
 )
 
-from backend.services.confidence_service import (
+from backend.services.retrieval_evaluator_service import (
     confidence_service
 )
 

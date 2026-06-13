@@ -1,5 +1,5 @@
 from backend.services.reranked_search_service import reranked_search_service
-from backend.services.confidence_service import confidence_service
+from backend.services.retrieval_evaluator_service import confidence_service
 from backend.services.web_search_service import web_search_service
 
 class SearchRouterService:
