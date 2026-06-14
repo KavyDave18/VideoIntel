@@ -169,7 +169,7 @@ Final Results
 
 ### Database
 
-* SQLite
+* MySQL
 
 ---
 
