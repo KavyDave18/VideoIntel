@@ -151,7 +151,7 @@ Final Results
 
 ### Retrieval
 
-* Qdrant
+* Qdrant(HNSW)
 * BM25
 * Sentence Transformers
 
